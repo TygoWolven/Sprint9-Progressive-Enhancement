@@ -12,39 +12,65 @@
 
 			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
 
-			label {
-				width: 10em;
-				height: 5em;
-				background: green;
-				padding: 1em 2em;
+			.switch {
+				position: relative;
+				display: inline-block;
+				width: 200px;
+				height: 110px;
+
+				& input {
+					display: none;
+				}
+			}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				border: 1px solid var(--blue);
+				background: var(--green);
+				transition: 0.5s ease;
 				border-radius: 500px;
 			}
 
-			input[type="checkbox"] {
-				color: lime;
+			.slider::before {
+				position: absolute;
+				content: "Uit";
+				height: 90px;
+				width: 90px;
+				left: 10px;
+				bottom: 10px;
+
+				background: var(--blue);
+				border-radius: 500px;
+				color: var(--green);
+
+				justify-content: center;
+				transition: 0.5s ease;
+				align-items: center;
+				display: flex;
 			}
 
-			input[type="checkbox"]:checked label {
-				background: purple;
+			input:checked + .slider::before {
+				transform: translateX(90px) rotate(360deg);
+				transform-origin: center;
+				content: "Aan";
 			}
 
 		</style>
 	</head>
+
 	<body>
 		<h1>Switch control</h1>
 
-		<label for="switch">
-			Aan of Uit
-			<input type="checkbox"  id="switch">
+		<label class="switch">
+			<input type="checkbox">
+			<span class="slider"></span>
 		</label>
-		
-		<!-- Hint: Op het WebKit blog stond hierover vorige maand een goed artikel -->
-
-		<details open>
-			<summary>Demo video</summary>
-			<video src="assets/switch.mp4" width="119" height="67" controls muted autoplay loop>
-				<a href="assets/switch.mp4">assets/switch.mp4</a>
-			</video>
-		</details>
 	</body>
+
 </html>
