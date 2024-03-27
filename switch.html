@@ -11,10 +11,32 @@
 			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
 
 			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
+
+			label {
+				width: 10em;
+				height: 5em;
+				background: green;
+				padding: 1em 2em;
+				border-radius: 500px;
+			}
+
+			input[type="checkbox"] {
+				color: lime;
+			}
+
+			input[type="checkbox"]:checked label {
+				background: purple;
+			}
+
 		</style>
 	</head>
 	<body>
 		<h1>Switch control</h1>
+
+		<label for="switch">
+			Aan of Uit
+			<input type="checkbox"  id="switch">
+		</label>
 		
 		<!-- Hint: Op het WebKit blog stond hierover vorige maand een goed artikel -->
 
