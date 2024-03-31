@@ -7,10 +7,14 @@
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
 			/* Schrijf hier gewoon je CSS voor dit component */
-			*::scrollbar {
+			* {
+				scroll-behavior: smooth;
+			}
+
+			*::-webkit-scrollbar {
 				display: none;
 			}
-			
+
 			section{
 				display: flex;
 				overflow: auto;
@@ -18,23 +22,26 @@
 			}
 
 			article{
-				margin-block: 2em;
-				padding: 3em;
-				background-color: var(--purple);
 				width: 800px;
 				flex-basis: 800px;
+
 				width: 70vw;
 				flex-basis: 70vw;
 				flex-shrink: 0;
-				scroll-snap-align: center;
-			}
 
-			article:nth-of-type(2n){
+				display: flex;
+				align-items: center;
+
+				scroll-snap-align: center;
 				background-color: var(--yellow);
 			}
 
-			article:nth-of-type(3n + 1){
+			article:nth-of-type(2n){
 				background-color: var(--green);
+			}
+
+			article:nth-of-type(3n + 1){
+				background-color: var(--purple);
 			}
 
 			blockquote{
@@ -44,57 +51,86 @@
 				font-style: italic;
 			}
 
-			.buttons{
-				display: flex;
-				justify-content: space-between;
+			#carrousel {
+				position: relative;
 			}
 
-			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
+			.navbutton {
+				position: absolute;
+				padding: 1em;
+				border: none;
+
+				background: var(--blue);
+				color: var(--green);
+				bottom: 10px;
+			}
+
+			#terug {
+				left: 10px;
+			}
+			#volgende {
+				right: 10px;
+			}
+
 		</style>
 		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
+			const nextButton = document.getElementById('volgende'),
+				  backButton = document.getElementById('terug'),
+
+				  carrousel = document.querySelector('section'),
+				  carrouselItem = document.querySelector('article'),
+
+				  itemInfo = carrouselItem.getBoundingClientRect(),
+				  itemWidth = itemInfo.width;
+
+			nextButton.addEventListener('click', function() {
+				carrousel.scrollBy(itemWidth, 0)
+			})
+			backButton.addEventListener('click', function() {
+				carrousel.scrollBy(-itemWidth, 0)
+			})
+
 		</script>
 	</head>
 	<body>
 		<h1>Carrousel</h1>
 		<a href="index.html">Terug</a>
 
-		<section>
-			<article>
-				<blockquote>
-					“Websites leren bouwen, én praktijkervaring opdoen?”
-				</blockquote>
-			</article>	
-			<article>
-				<blockquote>
-					“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-				</blockquote>
-			</article>	
-			<article>
-				<blockquote>
-					“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-				</blockquote>
-			</article>	
-			<article>
-				<blockquote>
-					“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-				</blockquote>
-			</article>	
-			<article>
-				<blockquote>
-					“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-				</blockquote>
-			</article>	
-			<article>
-				<blockquote>
-					“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-				</blockquote>
-			</article>
-		</section>
-
-		<div class="buttons">
-			<button class="fdnd-button">Vorige</button>
-			<button class="fdnd-button">Volgende</button>
-		</div>	
+		<div id="carrousel">
+			<button class="navbutton" id="terug">Terug</button>
+			<button class="navbutton" id="volgende">Volgende</button>
+			<section>
+				<article>
+					<blockquote>
+						“Websites leren bouwen, én praktijkervaring opdoen?”
+					</blockquote>
+				</article>	
+				<article>
+					<blockquote>
+						“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
+					</blockquote>
+				</article>	
+				<article>
+					<blockquote>
+						“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
+					</blockquote>
+				</article>	
+				<article>
+					<blockquote>
+						“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
+					</blockquote>
+				</article>	
+				<article>
+					<blockquote>
+						“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
+					</blockquote>
+				</article>	
+				<article>
+					<blockquote>
+						“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
+					</blockquote>
+				</article>
+			</section>
+		</div>
 	</body>
 </html>
