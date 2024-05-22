@@ -18,6 +18,7 @@
 				width: 200px;
 				height: 110px;
 				display: flex;
+				margin: 5em;
 
 				& input {
 					display: none;
@@ -32,24 +33,24 @@
 				right: 0;
 				bottom: 0;
 
-				border: 1px solid var(--blue);
-				background-image: url(/assets/cartoon-night-nature-landscape-full-moon-shining-vector-41357897.jpg);
+				border: 10px solid var(--blue);
+				background-image: url(/assets/nacht.png);
 				background-size: cover;
-				transition: 0.5s ease;
+				transition: 0.3s ease-out;
 				border-radius: 500px;
 			}
 
 			.slider::before {
 				position: absolute;
-				content: "Uit";
-				height: 90px;
-				width: 90px;
-				left: 10px;
-				bottom: 10px;
+				content: "Nacht";
+				height: 80px;
+				width: 80px;
+				left: 5px;
+				bottom: 5px;
 
 				background: var(--blue);
 				border-radius: 500px;
-				color: var(--green);
+				color: white;
 
 				justify-content: center;
 				transition: 0.5s ease;
@@ -58,13 +59,12 @@
 			}
 
 			input:checked + .slider::before {
-				transform: translateX(90px) rotate(360deg);
-				transform-origin: center;
-				content: "Aan";
+				transform: translateX(90px);
+				content: "Dag";
 			}
 
 			input:checked + .slider {
-				background-image: url(/assets/360_F_250086872_srlXRqANYR2IbNfIylRDc3eMO9MinjnV.jpg);
+				background-image: url(/assets/dag.png);
 			}
 
 		</style>
